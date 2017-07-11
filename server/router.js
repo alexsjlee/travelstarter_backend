@@ -84,4 +84,22 @@ module.exports = function(app) {
             res.status(404).send();
         });
     });
+
+    // Delete a specific itin
+    app.delete('/itin/:id', (req, res) => {
+        var id = req.params.id;
+
+        if(!ObjectID.isValid(id)){
+            return res.status(404).send();
+        };
+
+        Itin.findByIdAndRemove(id).then((itin) => {
+            if(!itin){
+                return res.status(404).send();
+            }
+            res.status(200).send({itin});
+        }).catch((e) => {
+            return res.status(400).send();
+        });
+    });
 }
