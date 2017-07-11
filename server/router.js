@@ -1,8 +1,14 @@
 var { mongoose } = require('./db/mongoose');
 const { ObjectID } = require('mongodb');
 var { Itin } = require('./models/itin');
+const fs = require('fs');
 
 module.exports = function(app) {
+    app.get('/', (req, res) => {
+        var html = fs.readFileSync('./server/index.html', 'utf8');
+        res.send(html);
+    });
+
     // Creates a new itin based on userId
     app.post('/itin/create', (req, res) => {
         console.log(req.body);

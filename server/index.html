@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Travel Starter Backend API</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class='container'>
+            <h1>Hello World</h1>
+
+            <div class="card">
+                <h3 class="card-header">POST /itin/create</h3>
+                <div class="card-block">
+                    <h4 class='card-title'>Creates a new itin.</h4>
+                    <p class="card-text">Needs the userId passed along for it to work.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-header">PATCH /itin/:id</h3>
+                <div class="card-block">
+                    <h4 class='card-title'>Adds a new place to an existing itinerary.</h4>
+                    <p class="card-text">Data object is already formatted in card.js</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-header">GET /itin/all</h3>
+                <div class="card-block">
+                    <h4 class='card-title'>Fetches all itins in the db.</h4>
+                    <p class="card-text">Nothing needs to be passed through.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-header">GET /itin/:id</h3>
+                <div class="card-block">
+                    <h4 class='card-title'>Fetches a specidic itin.</h4>
+                    <p class="card-text">_id needs to be passed through.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-header">POST /itin/mine</h3>
+                <div class="card-block">
+                    <h4 class='card-title'>Fetches all the itins of a user.</h4>
+                    <p class="card-text">Needs the userId passed along for it to work.</p>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
