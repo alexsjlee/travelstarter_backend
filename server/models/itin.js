@@ -7,6 +7,17 @@ var Itin = mongoose.model('Itin', {
         minlength: 1,
         trim: true
     },
+    city: {
+        type: String,
+        default: 'Los Angeles'
+    },
+    name: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true,
+        default: 'Draft'
+    },
     places: {
         type: [],
         default: []
