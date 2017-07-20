@@ -115,11 +115,22 @@ module.exports = function(app) {
         });
     });
 
-    // Get all of user's itins
-    app.post('/itin/mine', (req, res) => {
+    // Get all of user's finished itins
+    app.post('/itin/mine/done', (req, res) => {
         var userId = req.body.userId;
 
-        Itin.find({userId}).then((itins) => {
+        Itin.find({userId, inProgress: false}).then((itins) => {
+            res.send({itins});
+        }, (e) => {
+            res.status(404).send();
+        });
+    });
+
+    // Get all of user's draft itins
+    app.post('/itin/mine/drafts', (req, res) => {
+        var userId = req.body.userId;
+
+        Itin.find({userId, inProgress: true}).then((itins) => {
             res.send({itins});
         }, (e) => {
             res.status(404).send();
