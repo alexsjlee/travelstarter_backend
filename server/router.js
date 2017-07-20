@@ -49,6 +49,27 @@ module.exports = function(app) {
         });
     });
 
+    // Deletes an item from a specific itin based on _id
+    app.patch('/itin/item/:id/', (req, res) => {
+        var id = req.params.id;
+        var place = req.body;
+
+        if(!ObjectID.isValid(id)) {
+            return res.status(404).send();
+        };
+
+        Itin.findByIdAndUpdate(id, {$pull: {
+            places: place
+        }}).then((place) => {
+            if(!place) {
+                return res.status(404).send();
+            };
+            res.send({place});
+        }, (e) => {
+            res.status(400).send(e);
+        });
+    });
+
     // Gets all the itins in db
     app.get('/itin/all', (req, res) => {
         Itin.find().then((itins) => {
