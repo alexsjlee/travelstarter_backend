@@ -70,6 +70,26 @@ module.exports = function(app) {
         });
     });
 
+    app.patch('/itin/title/:id', (req, res) => {
+        var id = req.params.id;
+        var name = req.body;
+
+        if(!ObjectID.isValid(id)) {
+            return res.status(404).send();
+        };
+
+        Itin.findByIdAndUpdate(id, {$set: 
+            name
+        }).then((itin) => {
+            if(!itin) {
+                return res.status(404).send();
+            };
+            res.send({itin});
+        }, (e) => {
+            res.status(400).send();
+        });
+    });
+
     // Gets all the itins in db
     app.get('/itin/all', (req, res) => {
         Itin.find().then((itins) => {
