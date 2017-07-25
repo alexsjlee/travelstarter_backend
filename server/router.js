@@ -92,7 +92,7 @@ module.exports = function(app) {
 
     // Gets all the itins in db
     app.get('/itin/all', (req, res) => {
-        Itin.find().then((itins) => {
+        Itin.find({'inProgress': false}).then((itins) => {
             res.send({itins});
         }, (e) => {
             //res.status(400).send();
