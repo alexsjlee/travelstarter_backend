@@ -70,6 +70,7 @@ module.exports = function(app) {
         });
     });
 
+    // Edits the title of an itinerary draft based on _id
     app.patch('/itin/title/:id', (req, res) => {
         var id = req.params.id;
         var name = req.body;
@@ -81,6 +82,26 @@ module.exports = function(app) {
         Itin.findByIdAndUpdate(id, {$set: 
             name
         }).then((itin) => {
+            if(!itin) {
+                return res.status(404).send();
+            };
+            res.send({itin});
+        }, (e) => {
+            res.status(400).send();
+        });
+    });
+
+    // Changes the inProgess of a draft to false, publishing the itinerary
+    app.patch('/itin/publish/:id', (req, res) => {
+        var id = req.params.id;
+
+        if(!ObjectID.isValid(id)) {
+            return res.status(400).send();
+        };
+
+        Itin.findByIdAndUpdate(id, {$set: {
+            inProgress: false
+        }}).then((itin) => {
             if(!itin) {
                 return res.status(404).send();
             };
